@@ -1,4 +1,4 @@
-let scene, camera, cube, renderer;
+let scene, camera, renderer;
 
 function init () {
 //scene
