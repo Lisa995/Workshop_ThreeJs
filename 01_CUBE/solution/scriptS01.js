@@ -20,11 +20,11 @@ document.body.appendChild(renderer.domElement);
 
 //TASK 1:add a cube (box geometry) with color material
 const geometry = new THREE.BoxGeometry(2, 2, 2);
-//const material = new THREE.MeshBasicMaterial( {color: 0x0000ff} );
+const material = new THREE.MeshNormalMaterial( {color: 0x0000ff} );
 
 //TASK 3: add a texture (texture loader)
-const texture = new THREE.TextureLoader().load('textures/wood.jpg');
-const material = new THREE.MeshBasicMaterial( { map: texture } );
+//const texture = new THREE.TextureLoader().load('textures/wood.jpg');
+//const material = new THREE.MeshBasicMaterial( { map: texture } );
 
 cube = new THREE.Mesh( geometry, material );
 scene.add( cube );

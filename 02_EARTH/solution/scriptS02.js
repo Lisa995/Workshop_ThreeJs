@@ -1,4 +1,4 @@
-let scene, camera, cube, renderer;
+let scene, camera, renderer, earthMesh;
 
 function init () {
 //scene
@@ -11,37 +11,49 @@ camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 );
-camera.position.z = 5;
+camera.position.z = 10;
 
 //renderer
 renderer = new THREE.WebGLRenderer({ antialias : true});
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-//draw spere
-const geometry = new THREE.BoxGeometry(2, 2, 2);
+//add a sphere (sphere geometry)
+geometry = new THREE.SphereGeometry(5, 50, 50, 0, Math.PI * 2, 0, Math.PI * 2);
+material = new THREE.MeshPhongMaterial();
+earthMesh = new THREE.Mesh( geometry, material );
 
-//TASK 1:add a cube (box geometry) with color material
-//const material = new THREE.MeshBasicMaterial( {color: 0x0000ff} );
-const texture = new THREE.TextureLoader().load('textures/wood.jpg');
-const material = new THREE.MeshBasicMaterial( { map: texture } );
+//add img texture
+material.map = THREE.ImageUtils.loadTexture('img/earth.jpg')
 
-cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
+//TASK 3 : add bump
 
+material.bumpMap   = THREE.ImageUtils.loadTexture('img/bump.jpg');     
+material.bumpScale = 0.5;
+
+// TASK 1 : add  ambiant and hemisphere light
+var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1.5 );
+var light2 = new THREE.AmbientLight( 0x404040 );
+
+scene.add( earthMesh, light, light2 );
+
+//TASK 4 : add stars in background
+const bgImg = new THREE.TextureLoader().load('img/sky.jpg');
+scene.background = bgImg;
 };
 
-//MAKE RENDER
+//Make render
 function animate () {
   requestAnimationFrame(animate);
 
-  cube.rotation.x += 0.005;
-  cube.rotation.y += 0.005;
+  // TASK 2 : Make it moves
+  earthMesh.rotation.y += 0.005;
+  earthMesh.rotation.x += 0.0005
 
   renderer.render(scene, camera);
 }
 
-//TASK 4 : Resize window
+//Resize window
 function onWindowResize () {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
@@ -49,6 +61,6 @@ function onWindowResize () {
 };
 window.addEventListener('resize', onWindowResize, false)
 
-//CALL FUNCTIONS
+//Call functions
 init();
 animate();
