@@ -48,7 +48,8 @@ function animate () {
 
   // TASK 2 : Make it moves
   earthMesh.rotation.y += 0.005;
-  earthMesh.rotation.x += 0.0005
+  earthMesh.rotation.x += 0.0005;
+
 
   renderer.render(scene, camera);
 }
