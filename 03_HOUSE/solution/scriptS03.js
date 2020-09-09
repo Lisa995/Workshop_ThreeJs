@@ -11,33 +11,42 @@ camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 );
-camera.position.z = 10;
+camera.position.set( 25, 10, 20 );
 
 //renderer
 renderer = new THREE.WebGLRenderer({ antialias : true});
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-//Light
-const light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1.5 );
-const light2 = new THREE.AmbientLight( 0x404040 );
-
-scene.add( light, light2 );
-
-// instantiate a loader
-const loader = new THREE.OBJLoader();
-loader.setPath('./model/milk.obj');
-loader.load("milk.obj", function(object){
-    object.position.y -= 10;
-    scene.add(object)
+// Add GLTF
+const loader = new THREE.GLTFLoader();
+loader.load("./model/scene.gltf", function(gltf){
+  scene.add(gltf.scene)
 })
 
+//Light hemisphere, point, ambiant
+const ambiLight = new THREE.AmbientLight( 0x404040, 1 );
+const light = new THREE.PointLight( 0xff0000, 1, 100 );
+light.position.set( 50, 50, 50 );
+const hemiLight = new THREE.HemisphereLight( 0xffffbb, 0x080820, 4 );
+
+scene.add( ambiLight, light, hemiLight );
+
+//Orbit
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+camera.position.set( 25, 10, 20 );
+controls.update();
+
 };
+
+
 
 //Make render
 function animate () {
   requestAnimationFrame(animate);
+
   renderer.render(scene, camera);
+  console.log(camera.position)
 }
 
 //Resize window
