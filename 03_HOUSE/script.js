@@ -26,10 +26,10 @@ scene.background = bgImg;
 // TASK 1 : Add the gltf model
 
 
-//TASK 2 : Add ambiant light, point light, hemisphere light ...
+// TASK 2 : Add ambiant light, point light, hemisphere light ...
 
 
-//TASK 3 : add Orbit Control
+// TASK 3 : add Orbit Control
 
 
 };

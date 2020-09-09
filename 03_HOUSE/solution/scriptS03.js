@@ -19,13 +19,13 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 //Background
-const bgImg = new THREE.TextureLoader().load('./model/bg.png');
+const bgImg = new THREE.TextureLoader().load('../model/bg.png');
 scene.background = bgImg;
 
 
 // TASK 1 : Add the gltf model
 const loader = new THREE.GLTFLoader();
-loader.load("./model/scene.gltf", function(gltf){
+loader.load("../model/scene.gltf", function(gltf){
   scene.add(gltf.scene)
 })
 

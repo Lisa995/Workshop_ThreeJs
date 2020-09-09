@@ -29,7 +29,7 @@ material.map = THREE.ImageUtils.loadTexture('img/earth.jpg')
 // TASK 3 : add bump
 
 
-// TASK 1 : add  ambiant and hemisphere light
+// TASK 1 : add ambiant and hemisphere light
 
 
 // TASK 4 : add stars in background

@@ -24,11 +24,11 @@ material = new THREE.MeshPhongMaterial();
 earthMesh = new THREE.Mesh( geometry, material );
 
 //add img texture
-material.map = THREE.ImageUtils.loadTexture('img/earth.jpg')
+material.map = THREE.ImageUtils.loadTexture('../img/earth.jpg')
 
 //TASK 3 : add bump
 
-material.bumpMap   = THREE.ImageUtils.loadTexture('img/bump.jpg');     
+material.bumpMap   = THREE.ImageUtils.loadTexture('../img/bump.jpg');     
 material.bumpScale = 0.5;
 
 // TASK 1 : add  ambiant and hemisphere light
@@ -38,7 +38,7 @@ var light2 = new THREE.AmbientLight( 0x404040 );
 scene.add( earthMesh, light, light2 );
 
 //TASK 4 : add stars in background
-const bgImg = new THREE.TextureLoader().load('img/sky.jpg');
+const bgImg = new THREE.TextureLoader().load('../img/sky.jpg');
 scene.background = bgImg;
 };
 
